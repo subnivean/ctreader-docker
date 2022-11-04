@@ -1,9 +1,11 @@
 FROM python:3.10
 
-RUN apt update && apt upgrade -y
-
-RUN apt install -y python3-serial
-#                   python3-rpi.gpio
+# Tip from https://stackoverflow.com/questions/63892211
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive \
+     apt-get install --no-install-recommends --assume-yes \
+       python3-serial \
+       sqlite3
 
 # UPDATE: Don't run this here - this
 # only works from the host machine!
