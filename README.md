@@ -19,20 +19,22 @@ NOTE: In order for the CT readers to work you'll need to:
 - `sudo reboot`
 - Log back in
 - Insert the RPICT board on the RPi
-- `stty -echo -F /dev/ttyAMA0 raw speed 38400` (should see `38400`)
-- `cat /dev/ttyAMA0` (should see readings)
-- `sudo apt-get install python3-serial`
-- `wget lechacal.com/RPICT/tools/lcl-rpict-package_latest.deb`
-- `sudo dpkg -i lcl-rpict-package_latest.deb`
-- Test with `lcl-run`
+- The following lines are for testing only and are *not* required
+  to make things work:
+  - `stty -echo -F /dev/ttyAMA0 raw speed 38400` (should see `38400`)
+  - `cat /dev/ttyAMA0` (should see readings)
 
-The following is from http://lechacal.com/wiki/index.php?title=First_Configuration_RPICT:
+- `sudo apt-get install python3-pip`
+- `sudo pip install pyserial`
 
-Run this to copy the content of the epprom to a local file called /tmp/rpict.conf:
-- lcl-rpict-config.py -a
+- The following lines are only required if you need/want to make config
+  changes to the RPICT board (I did not need to):
+  - `wget lechacal.com/RPICT/tools/lcl-rpict-package_latest.deb`
+  - `sudo dpkg -i lcl-rpict-package_latest.deb`
+  - Test with `lcl-run`
+  - `lcl-rpict-config.py -a` (copies the content of the epprom to a local file called /tmp/rpict.conf)
+  - `lcl-rpict-config.py -a -w /tmp/rpict.conf` (writes back any edits to `/tmp/rpict.conf`)
+  - `/tmp/rpict.conf` is no longer needed.
 
-You can edit the file that was created at `/tmp/rpict.conf` (I don't think I did), then upload the mods via:
+For more, see http://lechacal.com/wiki/index.php?title=First_Configuration_RPICT:
 
-- `lcl-rpict-config.py -a -w /tmp/rpict.conf`
-
-`/tmp/rpict.conf` is no longer needed.
