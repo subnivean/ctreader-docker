@@ -37,11 +37,11 @@ while (n := n + 1) < 10:
         # print("Error, sleeping...")
         time.sleep(1)
 
-with open(OUTDATAPATH, 'a') as fh:
-    ct1, ct2, ct3, ct4, *temps = response
-    line = f"{now}, {ct1:7.2f}, {ct2:7.2f}, {ct3:7.2f}, {ct4:7.2f}"
-    fh.write(f"{line}\n")
-    #print(line)
+#with open(OUTDATAPATH, 'a') as fh:
+#    ct1, ct2, ct3, ct4, *temps = response
+#    line = f"{now}, {ct1:7.2f}, {ct2:7.2f}, {ct3:7.2f}, {ct4:7.2f}"
+#    fh.write(f"{line}\n")
+#    #print(line)
 
 rec = (now, *response[0:4])
 sql = f"""INSERT INTO {TBLNAME}(DateTime,ct0,ct1,ct2,ct3)
