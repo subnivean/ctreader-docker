@@ -4,11 +4,19 @@
 import datetime
 import serial
 import sqlite3
+import sys
 import time
 
+LOCS = ('garage', 'house')
+loc = sys.argv[1].lower()
+
+if loc not in LOCS:
+    print(f"`loc` must be one of {LOCS}")
+    sys.exit(1)
+
 DBPATH = "/appdata/heatpumpctdata.db"
-TBLNAME = "housectdata"
-OUTDATAPATH = "/appdata/house_heat_pump_ct_readings.log"
+TBLNAME = f"{loc}ctdata"
+OUTDATAPATH = f"/appdata/{loc}_ct_readings.log"
 DEV = "/dev/ttyAMA0"
 
 now = datetime.datetime.now().isoformat(timespec='milliseconds', sep='T')

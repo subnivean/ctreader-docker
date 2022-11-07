@@ -6,5 +6,5 @@ docker run --rm \
   --privileged \
   -v $SCRIPT_PATH/data:/appdata \
   -v $SCRIPT_PATH/src:/app \
-  ctreader
+  ctreader python app.py $1
 
