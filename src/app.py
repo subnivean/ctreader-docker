@@ -32,16 +32,21 @@ while (n := n + 1) < 10:
                                 .strip() \
                                 .split()[1:]]
         # print("Got it!")
-        break
     except (serial.SerialException, ValueError):
-        # print("Error, sleeping...")
+        print("readline() error, sleeping...")
         time.sleep(1)
+        continue
 
-#with open(OUTDATAPATH, 'a') as fh:
-#    ct1, ct2, ct3, ct4, *temps = response
-#    line = f"{now}, {ct1:7.2f}, {ct2:7.2f}, {ct3:7.2f}, {ct4:7.2f}"
-#    fh.write(f"{line}\n")
-#    #print(line)
+    if len(response) == 8:
+        # print("Breaking...")
+        break
+    else:
+        print("Not enough fields, sleeping...")
+        time.sleep(1)
+        continue
+else:
+    print("Couldn't get a good reading!")
+    1/0
 
 rec = (now, *response[0:4])
 sql = f"""INSERT INTO {TBLNAME}(DateTime,ct0,ct1,ct2,ct3)
