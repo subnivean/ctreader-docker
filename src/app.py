@@ -33,7 +33,7 @@ while (n := n + 1) < 10:
                                 .split()[1:]]
         # print("Got it!")
     except (serial.SerialException, ValueError):
-        print("readline() error, sleeping...")
+        #print("readline() error, sleeping...")
         time.sleep(1)
         continue
 
@@ -41,7 +41,7 @@ while (n := n + 1) < 10:
         # print("Breaking...")
         break
     else:
-        print("Not enough fields, sleeping...")
+        #print("Not enough fields, sleeping...")
         time.sleep(1)
         continue
 else:
