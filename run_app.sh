@@ -4,7 +4,7 @@ SCRIPT_PATH=$(dirname $(realpath -s $0))
 
 docker run --rm \
   --privileged \
-  -v $SCRIPT_PATH/data:/appdata \
+  -v $SCRIPT_PATH/data:/data \
   -v $SCRIPT_PATH/src:/app \
-  ctreader python app.py $1
+  allinone-py311 python app.py $1
 
