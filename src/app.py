@@ -14,9 +14,9 @@ if loc not in LOCS:
     print(f"`loc` must be one of {LOCS}")
     sys.exit(1)
 
-DBPATH = "/appdata/heatpumpctdata.sqlite"
+DBPATH = "/data/heatpumpctdata.sqlite"
 TBLNAME = f"{loc}ctdata"
-OUTDATAPATH = f"/appdata/{loc}_ct_readings.log"
+OUTDATAPATH = f"/data/{loc}_ct_readings.log"
 DEV = "/dev/ttyAMA0"
 
 now = datetime.datetime.now().isoformat(timespec='milliseconds', sep='T')
