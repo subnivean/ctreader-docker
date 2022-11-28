@@ -7,7 +7,7 @@ import sqlite3
 import sys
 import time
 
-LOCS = ('garage', 'house')
+LOCS = ("garage", "house")
 loc = sys.argv[1].lower()
 
 if loc not in LOCS:
@@ -19,21 +19,19 @@ TBLNAME = f"{loc}ctdata"
 OUTDATAPATH = f"/data/{loc}_ct_readings.log"
 DEV = "/dev/ttyAMA0"
 
-now = datetime.datetime.now().isoformat(timespec='milliseconds', sep='T')
-now += '+00:00'  # UTC
+now = datetime.datetime.now().isoformat(timespec="milliseconds", sep="T")
+now += "+00:00"  # UTC
 ser = serial.Serial(DEV, 38400)
 
 n = 0
 while (n := n + 1) < 10:
     try:
-        response = [float(e)
-                    for e in ser.readline() \
-                                .decode('utf-8') \
-                                .strip() \
-                                .split()[1:]]
+        response = [
+            float(e) for e in ser.readline().decode("utf-8").strip().split()[1:]
+        ]
         # print("Got it!")
     except (serial.SerialException, ValueError):
-        #print("readline() error, sleeping...")
+        # print("readline() error, sleeping...")
         time.sleep(1)
         continue
 
@@ -41,12 +39,12 @@ while (n := n + 1) < 10:
         # print("Breaking...")
         break
     else:
-        #print("Not enough fields, sleeping...")
+        # print("Not enough fields, sleeping...")
         time.sleep(1)
         continue
 else:
     print("Couldn't get a good reading!")
-    1/0
+    1 / 0
 
 rec = (now, *response[0:4])
 sql = f"""INSERT INTO {TBLNAME}(DateTime,ct0,ct1,ct2,ct3)
