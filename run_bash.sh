@@ -6,5 +6,6 @@ docker run --rm -it \
   --privileged \
   -v $SCRIPT_PATH/data:/data \
   -v $SCRIPT_PATH/src:/app \
-  allinone-py311 /bin/bash
+  -v $SCRIPT_PATH/ipython:/root/.ipython \
+  allinone-py311 /bin/bash --rcfile /bashrc
 
